@@ -1,6 +1,8 @@
 package com.springboot.demo.controller;
 
-import com.springboot.demo.javaBean.PersonBean;
+import com.springboot.demo.mapper.SysUserMapper;
+import com.springboot.demo.model.SysUser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,30 +15,15 @@ import java.util.List;
 @RequestMapping(value = "chenjie")
 public class IndexController {
 
-    @RequestMapping(value = "index", method = RequestMethod.GET)
-    public String index(Model model) {
-        PersonBean person = new PersonBean();
-        person.setName("张三");
-        person.setAge(22);
+    @Autowired
+    private SysUserMapper sysUserMapper;
 
-        List<PersonBean> people = new ArrayList<>();
-        PersonBean p1 = new PersonBean();
-        p1.setName("李四");
-        p1.setAge(23);
-        people.add(p1);
 
-        PersonBean p2 = new PersonBean();
-        p2.setName("王五");
-        p2.setAge(24);
-        people.add(p2);
+    @RequestMapping(value = "user", method = RequestMethod.GET)
+    public String showUser(Model model) {
 
-        PersonBean p3 = new PersonBean();
-        p3.setName("赵六");
-        p3.setAge(25);
-        people.add(p3);
-
-        model.addAttribute("person", person);
-        model.addAttribute("people", people);
+        List<SysUser> sysUsers = sysUserMapper.selectAllUser();
+        model.addAttribute("sysUsers", sysUsers);
 
         return "index";
     }
