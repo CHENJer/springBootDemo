@@ -18,8 +18,7 @@ public class IndexController {
     @Autowired
     private SysUserMapper sysUserMapper;
 
-
-    @RequestMapping(value = "user", method = RequestMethod.GET)
+    @RequestMapping(value = "index", method = RequestMethod.GET)
     public String showUser(Model model) {
 
         List<SysUser> sysUsers = sysUserMapper.selectAllUser();
@@ -27,4 +26,5 @@ public class IndexController {
 
         return "index";
     }
+
 }

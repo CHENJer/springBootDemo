@@ -17,7 +17,6 @@ public class CommonWebAppConfigurer implements WebMvcConfigurer {
         r1.addPathPatterns("/*");
 
         // excludePathPatterns 排除拦截
-        r1.excludePathPatterns("/chenjie/user");
-
+        r1.excludePathPatterns("/test/getProperties");
     }
 }
